@@ -37,20 +37,20 @@ void CompositeStateG9::SubmitStatesFillGenSpecificStaticData(
     //Set shift offset for interlace scaling
     //Vertical Frame Origin for Layer 0 - Layer 7
     //Format = Single precision floating point
-    pSurface = pRenderingData->pLayers[0]; // only using primary layer [0]
+    //pSurface = pRenderingData->pLayers[0]; // only using primary layer [0]
 
-    if (nullptr != pSurface && pSurface->bInterlacedScaling)
-    {
-        if (pSurface->SampleType == SAMPLE_INTERLEAVED_EVEN_FIRST_TOP_FIELD || pSurface->SampleType == SAMPLE_INTERLEAVED_ODD_FIRST_TOP_FIELD)
-        {
-            //use the cropping size, not the surface size
-            pStatic->DW12.TopBottomDelta = (float)(1.0 / (pSurface->rcDst.bottom - pSurface->rcDst.top) - 1.0 / (pSurface->rcSrc.bottom - pSurface->rcSrc.top));
-        }
-        else
-        {
-            pStatic->DW12.TopBottomDelta = (float)(-(1.0 / (pSurface->rcDst.bottom - pSurface->rcDst.top) - 1.0 / (pSurface->rcSrc.bottom - pSurface->rcSrc.top)));
-        }
-    }
+    //if (nullptr != pSurface && pSurface->bInterlacedScaling)
+    //{
+    //    if (pSurface->SampleType == SAMPLE_INTERLEAVED_EVEN_FIRST_TOP_FIELD || pSurface->SampleType == SAMPLE_INTERLEAVED_ODD_FIRST_TOP_FIELD)
+    //    {
+    //        //use the cropping size, not the surface size
+    //        pStatic->DW12.TopBottomDelta = (float)(1.0 / (pSurface->rcDst.bottom - pSurface->rcDst.top) - 1.0 / (pSurface->rcSrc.bottom - pSurface->rcSrc.top));
+    //    }
+    //    else
+    //    {
+    //        pStatic->DW12.TopBottomDelta = (float)(-(1.0 / (pSurface->rcDst.bottom - pSurface->rcDst.top) - 1.0 / (pSurface->rcSrc.bottom - pSurface->rcSrc.top)));
+    //    }
+    //}
 
     // Set ChromaSitting
     pStatic->DW10.ObjKa2Gen9.ChromaSitingLocation = GetOutputChromaSitting(pTarget);
